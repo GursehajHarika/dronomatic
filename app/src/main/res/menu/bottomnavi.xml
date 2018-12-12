@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Temprature"
+        android:id="@+id/bottomtemp"
+        android:icon="@drawable/ic_flight_land_black_24dp"></item>
+    <item android:title="Barometric pressure"
+        android:id="@+id/bottombaro"
+        android:icon="@drawable/ic_graphic_eq_black_24dp"></item>
+    <item android:title="Motion Sensor"
+        android:id="@+id/bottomotion"
+        android:icon="@drawable/ic_slow_motion_video_black_24dp"></item>
+</menu>

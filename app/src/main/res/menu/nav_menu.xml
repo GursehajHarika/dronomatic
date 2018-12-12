@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/account"
+        android:title="Account"></item>
+    <item android:id="@+id/temp"
+        android:title="Temperature"></item>
+    <item android:id="@+id/baropressure"
+        android:title="barometric Pressure"></item>
+    <item android:id="@+id/Motionsense"
+        android:title="Motion Sensor"></item>
+    <item android:id="@+id/settings"
+        android:title="Settings"></item>
+    <item android:id="@+id/contact"
+        android:title="Contact Us"></item>
+    <item android:id="@+id/Logout"
+    android:title="Logout"></item>
+</menu>

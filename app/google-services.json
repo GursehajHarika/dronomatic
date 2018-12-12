@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "346534901428",
+    "firebase_url": "https://sag-droninig-ceng319-project.firebaseio.com",
+    "project_id": "sag-droninig-ceng319-project",
+    "storage_bucket": "sag-droninig-ceng319-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346534901428:android:b3da8d369a313d01",
+        "android_client_info": {
+          "package_name": "com.example.gursehajharika.dronomatic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "346534901428-62opvd9v286b3m01vbih0q3fsvojahki.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gursehajharika.dronomatic",
+            "certificate_hash": "6a9bb5063bf0f2a64f88d2b6f95453c23c0bdd07"
+          }
+        },
+        {
+          "client_id": "346534901428-q3urufqhrllminqkoal5t5s0do7fcnts.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFNIxOZtRZwCV7zchNO4hpU2OjF4LfjXw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "346534901428-q3urufqhrllminqkoal5t5s0do7fcnts.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
