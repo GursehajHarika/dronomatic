@@ -45,10 +45,11 @@ public class baropress extends AppCompatActivity {
     private static final String TAG = "baropress";
     public TextView testreading;
     public TextView testtimer;
-
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    long a;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
-  //  private FirebaseAuth.AuthStateListener mAuthlistener;
+  //private FirebaseAuth.AuthStateListener mAuthlistener;
     private DatabaseReference mRef;
     private String userID, readings,timer;
 
@@ -130,7 +131,7 @@ public class baropress extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mRef = mFirebaseDatabase.getReference();
+                                                mRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
@@ -141,83 +142,28 @@ public class baropress extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
 
     private void shower(DataSnapshot dataSnapshot) {
-
         ArrayList<String> array = new ArrayList<>();
-
-        //Object 1.
         baropress_databaseread uinfor = new baropress_databaseread(readings,timer);
+        for(DataSnapshot ds : dataSnapshot.child("user").child(userID).child("Reading").getChildren()){
+            uinfor.setValuer(ds.getValue(baropress_databaseread.class).getValuer());
+            uinfor.setTimestamp(ds.getValue(baropress_databaseread.class).getTimestamp());
+           // convertTimestamp(uinfor.getTimestamp());
+            Log.d(TAG, " Getting Children Time Stamp : - "+convertTimestamp(uinfor.getTimestamp()));
+            Log.d(TAG, " Getting Children Values : - "+uinfor.getValuer());
+            array.add(" Time                : " + convertTimestamp(uinfor.getTimestamp()));
+            array.add("Readings         : " + uinfor.getValuer());
 
+            //ListView to display the data.
+            listView = (ListView)findViewById(R.id.listview);
+            ArrayAdapter adapter = new ArrayAdapter(baropress.this,android.R.layout.simple_list_item_1,array);
+            listView.setAdapter(adapter);
 
-        uinfor.setValuer(dataSnapshot.child("user").child(userID).child("Reading").child("read1").getValue(baropress_databaseread.class).getValuer());
-        uinfor.setTimestamp(dataSnapshot.child("user").child(userID).child("Reading").child("read1").getValue(baropress_databaseread.class).getTimestamp());
-        array.add(" Time : " + convertTimestamp(uinfor.getTimestamp()));
-        array.add(uinfor.getValuer());
-        convertTimestamp(uinfor.getTimestamp());
-        Log.d(TAG," Converted Time Stamp is" + convertTimestamp(uinfor.getTimestamp()));
-
-
-        //object 2.
-        baropress_databaseread uinfor2 = new baropress_databaseread(readings,timer);
-        uinfor2.setValuer(dataSnapshot.child("user").child(userID).child("Reading").child("read2").getValue(baropress_databaseread.class).getValuer());
-        uinfor2.setTimestamp(dataSnapshot.child("user").child(userID).child("Reading").child("read2").getValue(baropress_databaseread.class).getTimestamp());
-
-        Log.d(TAG," \n \n Showing Readings For Object 2 " + uinfor2.getTimestamp());
-        Log.d(TAG," \n \n Showing Time For object 2 " + uinfor2.getValuer());
-
-        array.add(" Time : " + convertTimestamp(uinfor2.getTimestamp()));
-        array.add(uinfor2.getValuer());
-
-
-        //object3
-        baropress_databaseread uinfor3 = new baropress_databaseread(readings,timer);
-        uinfor3.setValuer(dataSnapshot.child("user").child(userID).child("Reading").child("read3").getValue(baropress_databaseread.class).getValuer());
-        uinfor3.setTimestamp(dataSnapshot.child("user").child(userID).child("Reading").child("read3").getValue(baropress_databaseread.class).getTimestamp());
-
-        Log.d(TAG," \n \n Showing Readings For Object 3 " + uinfor3.getTimestamp());
-        Log.d(TAG," \n \n Showing Time For object 3 " + uinfor3.getValuer());
-
-
-        array.add(" Time : " + convertTimestamp(uinfor3.getTimestamp()));
-        array.add(uinfor3.getValuer());
-
-
-        //object 4
-        baropress_databaseread uinfor4 = new baropress_databaseread(readings,timer);
-        uinfor4.setValuer(dataSnapshot.child("user").child(userID).child("Reading").child("read4").getValue(baropress_databaseread.class).getValuer());
-        uinfor4.setTimestamp(dataSnapshot.child("user").child(userID).child("Reading").child("read4").getValue(baropress_databaseread.class).getTimestamp());
-
-        Log.d(TAG," \n \n Showing Readings For Object 4 " + uinfor4.getTimestamp());
-        Log.d(TAG," \n \n Showing Time For object 4 " + uinfor4.getValuer());
-
-
-
-        array.add(" Time : " + convertTimestamp(uinfor4.getTimestamp()));
-        array.add(uinfor4.getValuer());
-
-        //object 5
-
-        baropress_databaseread uinfor5 = new baropress_databaseread(readings,timer);
-        uinfor5.setValuer(dataSnapshot.child("user").child(userID).child("Reading").child("read5").getValue(baropress_databaseread.class).getValuer());
-        uinfor5.setTimestamp(dataSnapshot.child("user").child(userID).child("Reading").child("read5").getValue(baropress_databaseread.class).getTimestamp());
-
-        Log.d(TAG," \n \n Showing Readings For Object 4 " + uinfor5.getTimestamp());
-        Log.d(TAG," \n \nShowing Time For object 4 " + uinfor5.getValuer());
-
-        array.add(" Time : " + convertTimestamp(uinfor5.getTimestamp()));
-        array.add(uinfor5.getValuer());
-
-
-
-        //ListView to display the data.
-        listView = (ListView)findViewById(R.id.listview);
-        ArrayAdapter adapter = new ArrayAdapter(baropress.this,android.R.layout.simple_list_item_1,array);
-        listView.setAdapter(adapter);
+        }
 
         //Tester Textview
         testtimer = (TextView)findViewById(R.id.testertime);
@@ -228,37 +174,8 @@ public class baropress extends AppCompatActivity {
         testreading.setText("tester");
 
 
-
-
-
-
-
     }
 
-    public void offline(){
-
-
-
-        //Array for creating values on the page.
-
-           readingb = findViewById(R.id.TextView);
-           arraybarometric();
-         for(int i=0;i<baroreadings.size();i++) {
-
-              readingb.setText(readingb.getText() + baroreadings.get(i));
-         }
-          // readingb.setText(Arrays.toString(new ArrayList[]{baroreadings}));
-
-
-            listView = (ListView)findViewById(R.id.listview);
-        // listView2 = (ListView)findViewById(R.id.listview2);
-          ListAdapter listAdapter = new Baropress_customAdapter(this,TIMER);
-           ListAdapter listAdapter1= new Baropress_customAdapter1(this,DESCRIPTION);
-          listView.setAdapter(listAdapter1);
-        listView2.setAdapter(listAdapter);
-
-
-    }
     private String convertTimestamp(String timestamp){
 
         long yourSeconds = Long.valueOf(timestamp);
@@ -297,5 +214,7 @@ public class baropress extends AppCompatActivity {
             return false;
         }
     };
+
+
 
 }

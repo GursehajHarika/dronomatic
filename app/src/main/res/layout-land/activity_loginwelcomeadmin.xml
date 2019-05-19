@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000000"
-    tools:context=".Loginwelcome">
+    tools:context=".loginwelcomeadmin">
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="283dp"
-        android:layout_height="74dp"
+        android:layout_width="281dp"
+        android:layout_height="77dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -21,37 +21,43 @@
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.922"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.096" />
 
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="316dp"
-        android:layout_height="174dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="17dp"
+        android:layout_width="216dp"
+        android:layout_height="97dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text=""
         android:textColor="#ffffff"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.841"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.595" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView3"
         android:layout_width="236dp"
         android:layout_height="215dp"
-        android:layout_marginBottom="204dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/sag_logo_notop" />
+        app:srcCompat="@drawable/sag_logo_notop_gold" />
+
 
 </android.support.constraint.ConstraintLayout>

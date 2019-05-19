@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,10 +17,9 @@
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.214" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
         android:id="@+id/textView3"
@@ -31,24 +31,25 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/spinner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.636"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.888" />
 
     <android.support.v7.widget.CardView
         android:id="@+id/Tempcard"
-        android:layout_width="370dp"
-        android:layout_height="248dp"
+        android:layout_width="343dp"
+        android:layout_height="162dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:animateLayoutChanges="false"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.785">
+        app:layout_constraintVertical_bias="0.796">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -66,8 +67,8 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/barcard"
-        android:layout_width="370dp"
-        android:layout_height="248dp"
+        android:layout_width="335dp"
+        android:layout_height="173dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:animateLayoutChanges="false"
@@ -75,10 +76,10 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.646">
+        app:layout_constraintVertical_bias="0.868">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -89,15 +90,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:focusable="false"
-                android:textSize="25sp" />
+                android:textSize="18sp" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
         android:id="@+id/motioncard"
-        android:layout_width="370dp"
-        android:layout_height="248dp"
+        android:layout_width="328dp"
+        android:layout_height="169dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:animateLayoutChanges="false"
@@ -106,7 +107,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.647">
+        app:layout_constraintVertical_bias="0.841">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -124,58 +125,8 @@
 
         <ListView
             android:id="@+id/listreading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="348dp"
+            android:layout_height="186dp" />
     </android.support.v7.widget.CardView>
-
-    <ListView
-        android:id="@+id/Listview_home_page"
-        android:layout_width="368dp"
-        android:layout_height="102dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.48"
-        android:scrollbars="none"
-        />
-
-    <ListView
-        android:id="@+id/Listview_Temp"
-        android:layout_width="368dp"
-        android:layout_height="102dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.48" />
-
-    <ListView
-        android:id="@+id/Listview_Motion"
-        android:layout_width="368dp"
-        android:layout_height="102dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.372"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.48" />
 
 </android.support.constraint.ConstraintLayout>

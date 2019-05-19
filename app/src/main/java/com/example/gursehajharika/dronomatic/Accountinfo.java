@@ -1,19 +1,17 @@
 package com.example.gursehajharika.dronomatic;
 
-import android.content.Intent;
+
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -22,25 +20,26 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Set;
 
 public class Accountinfo extends AppCompatActivity {
 
     public Button home;
     public MenuView.ItemView quit;
-    public EditText fullnam, emailadd,oldpasswrd,newpassrd;
+    public EditText fullnam, emailadd,oldpasswrd,newpassrd,passwordneew;
 
     String fulna = null;
     String emailr = null;
     String older = null;
     String prod = null;
+    String newpass = null;
 
     //Firebase
     private FirebaseAuth mAuth;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference dbref;
+    private DatabaseReference mRef;
     private String userID;
+
 
     private static final String TAG = "Accountinfo";
     @Override
@@ -72,80 +71,57 @@ public class Accountinfo extends AppCompatActivity {
         emailadd = (EditText)findViewById(R.id.emailler);
         oldpasswrd = (EditText)findViewById(R.id.opaswrd);
         newpassrd = (EditText)findViewById(R.id.newpas);
+        passwordneew = (EditText)findViewById(R.id.newpasswordET);
 
 
         fullnam.setText(fulna);
         emailadd.setText(emailr);
         oldpasswrd.setText(older);
         newpassrd.setText(prod);
+        passwordneew.setText(newpass);
 
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        dbref = mFirebaseDatabase.getReference();
+        FirebaseUser user = mAuth.getCurrentUser();
+        userID = user.getUid();
+        mRef = mFirebaseDatabase.getReference("user").child(userID).child("userinfo");
 
-
-
-       dbref.addValueEventListener(new ValueEventListener() {
+        mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               showdata(dataSnapshot);
-
+                shower(dataSnapshot);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-
-
     }
 
-    private void showdata(DataSnapshot dataSnapshot) {
-
-
-            FirebaseUser user = mAuth.getCurrentUser();
-            String userID = user.getUid();
-          //  DataSnapshot ds = dataSnapshot;
-            Userinformation uinfo = new Userinformation(emailr,fulna,older,prod,userID);
-            uinfo.setName(dataSnapshot.child("user").child(userID).getValue(Userinformation.class).getName());
-            uinfo.setEmail(dataSnapshot.child("user").child(userID).getValue(Userinformation.class).getEmail());
-            uinfo.setPassword(dataSnapshot.child("user").child(userID).getValue(Userinformation.class).getPassword());
-            uinfo.setProductID(dataSnapshot.child("user").child(userID).getValue(Userinformation.class).getProductID());
-
-            Log.d(TAG,"showData : name" + uinfo.getName());
-            Log.d(TAG,"showData : email" + uinfo.getEmail());
-            Log.d(TAG,"showData : password" + uinfo.getPassword());
-            Log.d(TAG,"showData : productID" + uinfo.getProductID());
-            Log.d(TAG,"ShowData : UserID " + uinfo.getUserID());
-
-         //   fullnam.setText(uinfo.getName());
-         //   emailadd.setText(uinfo.getEmail());
-         //   oldpasswrd.setText(uinfo.getPassword());
-          //  newpassrd.setText(uinfo.getProductID());
-
-
-
-    }
 
     //Database userInfo Test Starts Here
 
+    private void shower(DataSnapshot dataSnapshot) {
 
 
+        Userinformation uinfo = new Userinformation(emailr,fulna,older,prod,userID);
+        uinfo.setEmail(dataSnapshot.getValue(Userinformation.class).getEmail());
+        Log.d(TAG," Email Info " + uinfo.getEmail());
+        uinfo.setName(dataSnapshot.getValue(Userinformation.class).getName());
+        Log.d(TAG," Name Info " + uinfo.getName());
+        uinfo.setPassword(dataSnapshot.getValue(Userinformation.class).getPassword());
+        Log.d(TAG," Password Info " + uinfo.getPassword());
+        uinfo.setProductID(dataSnapshot.getValue(Userinformation.class).getProductID());
+        Log.d(TAG," ProID Info " + uinfo.getProductID());
+        uinfo.setUserID(dataSnapshot.getValue(Userinformation.class).getUserID());
+        Log.d(TAG," User Info " + uinfo.getUserID());
 
+        fullnam.setText(uinfo.getEmail());
+        emailadd.setText(uinfo.getName());
+        oldpasswrd.setText(uinfo.getPassword());
+        newpassrd.setText(uinfo.getProductID());
 
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     //Test Ends here
@@ -163,17 +139,6 @@ public class Accountinfo extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (mAuthListener != null){
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
+
 }

@@ -1,6 +1,5 @@
 package com.example.gursehajharika.dronomatic;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -69,18 +67,8 @@ private FirebaseDatabase mFirebaseDatabase;
 
     public void sett(){
 
-
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        // DatabaseReference name = database.getReference("Firstname");
-        // DatabaseReference passw = database.getReference("password");
-        // DatabaseReference lname = database.getReference("Lastname");
-        // DatabaseReference product = database.getReference("ProductID");
-        // DatabaseReference emailaddr = database.getReference("email");
 
-
-        //FirebaseUser user = mAuth.getCurrentUser();
-       // userID = user.getUid();
         Userinformation userinformation = new Userinformation(firstname,emailaddres,password,productstring,userID);
         dbr.child("user").child(userID).setValue(userinformation);
 
@@ -137,7 +125,6 @@ private FirebaseDatabase mFirebaseDatabase;
      emailaddres = emailaddress.getText().toString();
      productstring = proID.getText().toString();
 
-
      //Writing to the Database.
 
      //Creates New user.
@@ -145,12 +132,6 @@ private FirebaseDatabase mFirebaseDatabase;
      mFirebaseDatabase = FirebaseDatabase.getInstance();
      dbr = mFirebaseDatabase.getReference();
      //   FirebaseUser user = mAuth.getCurrentUser();
-
-
-
-
-
-
      mAuth.createUserWithEmailAndPassword(emailaddres, password)
              .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                  @Override
@@ -160,35 +141,23 @@ private FirebaseDatabase mFirebaseDatabase;
                          Log.d(TAG, "createUserWithEmail:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                          userID = user.getUid();
-                       // sett();
                     Log.d(TAG,"Current User ID" + mAuth);
                      } else {
+
                          // If sign in fails, display a message to the user.
                          Log.w(TAG, "createUserWithEmail:failure", task.getException());
                          Toast.makeText(register.this, "Authentication failed.",
                                  Toast.LENGTH_SHORT).show();
-
                      }
 
-
                      FirebaseDatabase database = FirebaseDatabase.getInstance();
-                     // DatabaseReference name = database.getReference("Firstname");
-                     // DatabaseReference passw = database.getReference("password");
-                     // DatabaseReference lname = database.getReference("Lastname");
-                     // DatabaseReference product = database.getReference("ProductID");
-                     // DatabaseReference emailaddr = database.getReference("email");
-
-                   //  FirebaseUser user = mAuth.getCurrentUser();
 
                      Userinformation userinformation = new Userinformation(firstname,emailaddres,password,productstring,userID);
-                     dbr.child("user").child(userID).setValue(userinformation);
-
+                     dbr.child("user").child(userID).child("userinfo").setValue(userinformation);
 
                      Toast.makeText(register.this,"User has been created.",Toast.LENGTH_LONG).show();
                      finish();
 
-
-                     // ...
                  }
              });
  }
